@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitops-ocs-operator-ocs-operator
+spec:
+  destination:
+    namespace: gitops-ocs-operator
+    server: https://kubernetes.default.svc
+  project: 2-services
+  source:
+    path: payload/2-services/namespace/gitops-ocs-operator/ocs-operator
+    repoURL: https://github.com/cloud-native-toolkit-test/gitops-ocs-operator
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
